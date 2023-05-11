@@ -1,0 +1,89 @@
+RoboFi	        KEYWORD1
+Demo	        KEYWORD1
+
+OK	            KEYWORD2
+sw_OK	        KEYWORD2
+sw_OK_press	    KEYWORD2
+
+analog	        KEYWORD1
+# knob	        KEYWORD1
+glcd	        KEYWORD1
+# glcdChar	    KEYWORD1
+# glcdString	KEYWORD1
+# glcdMode	KEYWORD1
+# glcdGetMode	KEYWORD1
+# glcdFlip	KEYWORD1
+# glcdGetFlip	KEYWORD1
+# glcdSetColorWordRGB	KEYWORD1
+# glcdSetColorWordBGR	KEYWORD1
+# colorRGB	KEYWORD1
+setTextColor	KEYWORD1
+# setTextBackgroundColor	KEYWORD1
+# setTextBackgroundTransparent	KEYWORD1
+setTextSize	    KEYWORD1
+# getTextColor	KEYWORD1
+getTextBackgroundColor	KEYWORD1
+getTextSize	KEYWORD1
+glcdFillScreen	KEYWORD1
+glcdClear	KEYWORD1
+glcdPixel	KEYWORD1
+glcdRect	KEYWORD1
+glcdFillRect	KEYWORD1
+glcdLine	KEYWORD1
+glcdVLine	KEYWORD1
+glcdHLine	KEYWORD1
+glcdCircle	KEYWORD1
+glcdFillCircle	KEYWORD1
+glcdArc	KEYWORD1
+GLCD_RED	LITERAL1	Constants
+GLCD_GREEN 	LITERAL1	Constants
+GLCD_BLUE 	LITERAL1	Constants
+GLCD_YELLOW 	LITERAL1	Constants
+GLCD_BLACK 	LITERAL1	Constants
+GLCD_WHITE 	LITERAL1	Constants
+GLCD_CYAN 	LITERAL1	Constants
+GLCD_MAGENTA 	LITERAL1	Constants
+
+GLCD_ORANGE 	LITERAL1	Constants
+GLCD_LIME 	LITERAL1	Constants
+GLCD_VIOLET 	LITERAL1	Constants
+GLCD_PINK 	LITERAL1	Constants
+GLCD_DOLLAR 	LITERAL1	Constants
+GLCD_SKY 	LITERAL1	Constants
+GLCD_BROWN 	LITERAL1	Constants
+GLCD_DARKGREEN 	LITERAL1	Constants
+GLCD_BROWN 	LITERAL1	Constants
+GLCD_DARKGRAY 	LITERAL1	Constants
+GLCD_GRAY 	LITERAL1	Constants
+getdist	KEYWORD1
+
+in	KEYWORD1
+out	KEYWORD1
+
+motor	KEYWORD1
+motor_stop	KEYWORD1
+
+fd	KEYWORD1
+bk	KEYWORD1
+fd2	KEYWORD1
+bk2	KEYWORD1
+
+
+tl	KEYWORD1
+tr	KEYWORD1
+sl	KEYWORD1
+sr	KEYWORD1
+
+servo	KEYWORD1
+beep	KEYWORD1
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+ALL	    LITERAL1	Constants
+AN0 	LITERAL1	Constants
+AN1 	LITERAL1	Constants
+AN2 	LITERAL1	Constants
+AN3 	LITERAL1	Constants
+AN4 	LITERAL1	Constants
+AN5 	LITERAL1	Constants
