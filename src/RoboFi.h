@@ -69,6 +69,10 @@ bool 				_motor_init	= false;
 bool 				_servo_init	= false;
 volatile uint8_t 	_textSize 	= 1;
 
+int val[6];
+int val_min[6];
+int val_max[6];
+
 Adafruit_ST7735 tft = Adafruit_ST7735(TFT_CS,  TFT_DC, TFT_RST);  
 
 void beep(){
@@ -403,11 +407,133 @@ void slr(uint8_t speed){
 	motor(4, -speed);
 	
 }
+void readAllAnalogs(){
+	for(int i=0; i<6; i++){
+		glcdFillRect(32,  i*15+35, 25, 10, GLCD_BLACK);
+		glcdFillRect(64,  i*15+35, 25, 10, GLCD_BLACK);
+		glcdFillRect(96,  i*15+35, 25, 10, GLCD_BLACK);
+		glcdFillRect(128, i*15+35, 25, 10, GLCD_BLACK);
 
-void Demo(){
+		if(i==0) val[i] = analog(AN0);
+		if(i==1) val[i] = analog(AN1);
+		if(i==2) val[i] = analog(AN2);
+		if(i==3) val[i] = analog(AN3);
+		if(i==4) val[i] = analog(AN4);
+		if(i==5) val[i] = analog(AN5);
+
+		if(val[i] < val_min[i])  val_min[i] = val[i];
+		if(val[i] > val_max[i])  val_max[i] = val[i];
+
+		glcd(32,  i*15+35,  "%4d", val[i]);
+		glcd(64,  i*15+35,  "%4d", val_min[i]);
+		glcd(96,  i*15+35,  "%4d", val_max[i]);
+		glcd(128,  i*15+35,  "%4d", (int)((val_max[i]-val_min[i]) / 2) + val_min[i]);
+	}
+}
+
+void demo(){
+	int angle;
+	int speed;
 	
+	sw_OK();
 	
-	//glcd(0, 10, "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
+	setTextSize(1);
+	glcd(0,0, "RoboFi by N Academy");
+	glcd(0,10,"ANALOG INPUT DASHBOARD");
+	
+	glcd(0,   20,  "AN");
+	glcd(32,  20,  "PV");
+	glcd(64,  20,  "MIN");
+	glcd(96,  20,  "MAX");
+	glcd(128, 20,  "AVG");
+
+	glcd(0,   35,  "A0");
+	glcd(0,   50,  "A1");
+	glcd(0,   65,  "A2");
+	glcd(0,   80,  "A3");
+	glcd(0,   95,  "A4");
+	glcd(0,   110,  "A5");
+	glcdHLine(0, 30, ST7735_TFTHEIGHT);
+
+	// Initial min
+	val_min[0] = analog(AN0);
+	val_min[1] = analog(AN1);
+	val_min[2] = analog(AN2);
+	val_min[3] = analog(AN3);
+	val_min[4] = analog(AN4);
+	val_min[5] = analog(AN5);
+
+	// Initial max
+	val_max[0] = analog(AN0);
+	val_max[1] = analog(AN1);
+	val_max[2] = analog(AN2);
+	val_max[3] = analog(AN3);
+	val_max[4] = analog(AN4);
+	val_max[5] = analog(AN5);
+	
+	while(1){
+		for(int i=1; i<=2; i++){
+
+			servo(1, 0);
+			servo(2, 0);
+			servo(3, 0);
+
+			speed = 50*i;
+			readAllAnalogs();
+			fd(speed);
+			delay(1000);
+			motor_stop(ALL);  delay(1000);
+
+			servo(1, 30);
+			servo(2, 30);
+			servo(3, 30);
+
+			readAllAnalogs();
+			bk(speed);
+			delay(1000);
+			motor_stop(ALL);  delay(1000);
+
+			servo(1, 60);
+			servo(2, 60);
+			servo(3, 60);
+
+			readAllAnalogs();
+			sll(speed);
+			delay(1000);
+			motor_stop(ALL);  delay(1000);
+
+			servo(1, 90);
+			servo(2, 90);
+			servo(3, 90);
+
+			readAllAnalogs();
+			slr(speed);
+			delay(1000);
+			motor_stop(ALL);  delay(1000);
+
+			servo(1, 120);
+			servo(2, 120);
+			servo(3, 120);
+
+			readAllAnalogs();
+			sl(speed);
+			delay(1000);
+			motor_stop(ALL);  delay(1000);
+
+			servo(1, 150);
+			servo(2, 150);
+			servo(3, 150);
+
+			readAllAnalogs();
+			sr(speed);
+			delay(1000);
+			motor_stop(ALL);  delay(1000);
+
+			servo(1, 180);
+			servo(2, 180);
+			servo(3, 180);
+		}
+	}
 }
 
 
