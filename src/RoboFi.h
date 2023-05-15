@@ -59,7 +59,7 @@ Servo _servo1, _servo2, _servo3;
 //.. SERVO ..........................
 #define SW				13
 
-//.. SERVO ..........................
+//.. BUZZER ..........................
 #define BUZZER     		17 
 
 
@@ -335,7 +335,7 @@ void servo(uint8_t servo, uint8_t angle){
 
 
 bool sw_OK_press(){
-	if(digitalRead(SW)){
+	if(!digitalRead(SW)){
 		return true;
 	}
 	else{
@@ -355,7 +355,7 @@ void sw_OK(){
 	glcdClear();
 	setTextSize(2);
 	glcd(0,0,"Press OK...");
-	while(sw_OK_press()){
+	while(!sw_OK_press()){
 		delay(100);
 	}
 	beep();
